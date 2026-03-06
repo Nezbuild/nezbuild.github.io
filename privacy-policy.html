@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline';">
-  <title>Privacy Policy — Lead Exporter</title>
+  <title>Privacy Policy — LinkLead</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -65,19 +65,19 @@
 <div class="card">
 
   <div class="logo-row">
-    <img src="icons/icon48.png" alt="Lead Exporter icon">
-    <h1>Lead Exporter — Privacy Policy</h1>
+    <img src="icons/icon48.png" alt="LinkLead icon">
+    <h1>LinkLead — Privacy Policy</h1>
   </div>
   <p class="subtitle">Last updated: 2026-03-06</p>
 
   <div class="highlight">
-    <strong>Summary:</strong> Lead Exporter does not collect, store, or transmit any of your
+    <strong>Summary:</strong> LinkLead does not collect, store, or transmit any of your
     lead data or personal information. Everything stays on your device.
   </div>
 
   <h2>1. What data the extension reads</h2>
   <p>
-    Lead Exporter reads the visible text content of LinkedIn people-search result pages
+    LinkLead reads the visible text content of LinkedIn people-search result pages
     that are already displayed in your browser tab. This includes publicly visible profile
     information such as names, job titles, companies, locations, and profile URLs.
   </p>
@@ -98,13 +98,19 @@
   </ul>
 
   <h2>3. External network requests</h2>
-  <p>The extension makes exactly one type of external network request:</p>
+  <p>The extension makes the following external network requests:</p>
   <ul>
     <li>
       <strong>LemonSqueezy license API</strong> — when you activate a Pro license key, or once
       per day to verify your subscription is still active. Only your license key and a static
-      instance identifier string are sent. No lead data, no names, no profile URLs, and no
-      LinkedIn credentials are included in these requests.
+      instance identifier string are sent. No lead data is included.
+    </li>
+    <li>
+      <strong>Hunter.io email enrichment (optional)</strong> — if you choose to use the Email
+      Enrichment feature and save your own Hunter.io API key, the first name, last name, and
+      company name of each lead are sent directly to Hunter.io using your API key.
+      This data goes to Hunter.io — not to our servers. This feature is entirely opt-in;
+      you can remove your key at any time from the popup.
     </li>
   </ul>
   <p>No analytics, crash reporting, telemetry, or advertising networks are used.</p>
@@ -117,7 +123,7 @@
 
   <h2>5. No cookies</h2>
   <p>
-    Lead Exporter does not use cookies of any kind. It does not read, write, or interact with
+    LinkLead does not use cookies of any kind. It does not read, write, or interact with
     browser cookies or LinkedIn session cookies.
   </p>
 
@@ -148,7 +154,7 @@
 
   <div class="contact">
     <strong>Contact:</strong> For privacy questions, open an issue at
-    <a href="https://github.com/nezbuild/lead-exporter/issues">github.com/nezbuild/lead-exporter/issues</a>.
+    <a href="https://github.com/nezbuild/linklead/issues">github.com/nezbuild/linklead/issues</a>.
   </div>
 
 </div>
