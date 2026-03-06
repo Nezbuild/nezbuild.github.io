@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline';">
+  <title>Privacy Policy — Lead Exporter</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f3f6f9;
+      color: #1d2226;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px 60px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.10);
+      max-width: 680px;
+      width: 100%;
+      padding: 40px 40px 36px;
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .logo-row img { width: 36px; height: 36px; }
+    .logo-row h1 { font-size: 20px; font-weight: 700; color: #0073b1; }
+    .subtitle {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 32px;
+    }
+    h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1d2226;
+      margin: 28px 0 10px;
+    }
+    p, li {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #444;
+    }
+    ul { padding-left: 20px; margin-top: 6px; }
+    li { margin-bottom: 6px; }
+    .highlight {
+      background: #f0f7fc;
+      border-left: 3px solid #0073b1;
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #1d2226;
+    }
+    a { color: #0073b1; }
+    .contact { margin-top: 32px; font-size: 13px; color: #666; }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <div class="logo-row">
+    <img src="icons/icon48.png" alt="Lead Exporter icon">
+    <h1>Lead Exporter — Privacy Policy</h1>
+  </div>
+  <p class="subtitle">Last updated: 2026-03-06</p>
+
+  <div class="highlight">
+    <strong>Summary:</strong> Lead Exporter does not collect, store, or transmit any of your
+    lead data or personal information. Everything stays on your device.
+  </div>
+
+  <h2>1. What data the extension reads</h2>
+  <p>
+    Lead Exporter reads the visible text content of LinkedIn people-search result pages
+    that are already displayed in your browser tab. This includes publicly visible profile
+    information such as names, job titles, companies, locations, and profile URLs.
+  </p>
+  <p>
+    This reading happens locally in your browser. No information is sent to the extension
+    developer or any third party.
+  </p>
+
+  <h2>2. What data is stored locally</h2>
+  <p>The extension stores the following data in your browser's local extension storage
+  (<code>chrome.storage.local</code>), which never leaves your device:</p>
+  <ul>
+    <li>Exported profile URLs — used to skip duplicate exports across sessions</li>
+    <li>Leads you have added to the Lead Basket — until you export or clear the basket</li>
+    <li>Your campaign tag and UI preferences (e.g. selected preset, debug mode)</li>
+    <li>Daily export count — used to enforce the Free plan daily limit</li>
+    <li>Your license key and activation instance ID (Pro users only) — used for daily subscription revalidation</li>
+  </ul>
+
+  <h2>3. External network requests</h2>
+  <p>The extension makes exactly one type of external network request:</p>
+  <ul>
+    <li>
+      <strong>LemonSqueezy license API</strong> — when you activate a Pro license key, or once
+      per day to verify your subscription is still active. Only your license key and a static
+      instance identifier string are sent. No lead data, no names, no profile URLs, and no
+      LinkedIn credentials are included in these requests.
+    </li>
+  </ul>
+  <p>No analytics, crash reporting, telemetry, or advertising networks are used.</p>
+
+  <h2>4. Your exported CSV files</h2>
+  <p>
+    CSV files downloaded by the extension are saved directly to your device via the browser's
+    standard download mechanism. The extension developer has no access to these files.
+  </p>
+
+  <h2>5. No cookies</h2>
+  <p>
+    Lead Exporter does not use cookies of any kind. It does not read, write, or interact with
+    browser cookies or LinkedIn session cookies.
+  </p>
+
+  <h2>6. Your responsibilities under data protection law (GDPR / CCPA)</h2>
+  <p>
+    When you export LinkedIn profile data using this extension, you become the
+    <strong>data controller</strong> for that data under applicable privacy laws (including GDPR
+    and CCPA). You are responsible for ensuring your use of exported data complies with
+    applicable law, LinkedIn's terms of service, and the privacy rights of the individuals
+    whose data you export.
+  </p>
+  <p>
+    The extension developer is a data processor only in the limited sense of providing the
+    software tool, and bears no responsibility for how exported data is used.
+  </p>
+
+  <h2>7. Children's privacy</h2>
+  <p>
+    This extension is not directed at children under 13 and does not knowingly collect
+    information from children.
+  </p>
+
+  <h2>8. Changes to this policy</h2>
+  <p>
+    If this policy changes materially, an updated version will be published. Continued use
+    of the extension after changes constitutes acceptance of the updated policy.
+  </p>
+
+  <div class="contact">
+    <strong>Contact:</strong> For privacy questions, open an issue at
+    <a href="https://github.com/nezbuild/lead-exporter/issues">github.com/nezbuild/lead-exporter/issues</a>.
+  </div>
+
+</div>
+</body>
+</html>

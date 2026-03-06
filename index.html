@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Exporter — Export LinkedIn Search Results to CSV</title>
+  <meta name="description" content="Export visible LinkedIn people-search results to CSV in seconds. No automation, no bots, no account risk.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f3f6f9;
+      color: #1d2226;
+    }
+
+    /* ── Nav ── */
+    nav {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 17px;
+      color: #0073b1;
+      text-decoration: none;
+    }
+    .nav-brand img { width: 28px; height: 28px; }
+    .nav-link {
+      font-size: 14px;
+      color: #555;
+      text-decoration: none;
+    }
+    .nav-link:hover { color: #0073b1; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0073b1 0%, #005082 100%);
+      color: #fff;
+      text-align: center;
+      padding: 80px 24px 72px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: clamp(15px, 2.5vw, 19px);
+      opacity: .88;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: #fff;
+      color: #0073b1;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,.18);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.22); }
+    .hero-sub {
+      margin-top: 16px;
+      font-size: 13px;
+      opacity: .7;
+    }
+
+    /* ── Features ── */
+    .section { max-width: 960px; margin: 0 auto; padding: 64px 24px; }
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 48px;
+      color: #1d2226;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.07);
+    }
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+    .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: #555; line-height: 1.6; }
+
+    /* ── How it works ── */
+    .how { background: #fff; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .step {
+      text-align: center;
+      padding: 12px;
+    }
+    .step-num {
+      width: 44px; height: 44px;
+      background: #0073b1;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: #555; line-height: 1.55; }
+
+    /* ── Pricing ── */
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .plan {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.07);
+      text-align: center;
+    }
+    .plan--pro {
+      border: 2px solid #0073b1;
+      position: relative;
+    }
+    .plan-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0073b1;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+      letter-spacing: .05em;
+    }
+    .plan h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .plan-price {
+      font-size: 36px;
+      font-weight: 800;
+      color: #0073b1;
+      margin-bottom: 4px;
+    }
+    .plan-price span { font-size: 16px; font-weight: 400; color: #888; }
+    .plan-features {
+      list-style: none;
+      margin: 20px 0 28px;
+      text-align: left;
+    }
+    .plan-features li {
+      font-size: 14px;
+      color: #444;
+      padding: 5px 0;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .plan-features li::before { content: "✓"; color: #00875a; font-weight: 700; flex-shrink: 0; }
+    .btn-plan {
+      display: block;
+      padding: 11px 0;
+      border-radius: 7px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+    }
+    .btn-plan--free { background: #f0f0f0; color: #333; }
+    .btn-plan--pro  { background: #0073b1; color: #fff; }
+    .btn-plan--pro:hover { background: #005f94; }
+
+    /* ── Privacy strip ── */
+    .privacy-strip {
+      background: #e8f4fd;
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+    }
+    .privacy-strip strong { color: #0073b1; }
+
+    /* ── Footer ── */
+    footer {
+      background: #1d2226;
+      color: #aaa;
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+    }
+    footer a { color: #aaa; text-decoration: underline; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <img src="icon128.png" alt="Lead Exporter">
+    Lead Exporter
+  </a>
+  <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Export LinkedIn Search Results<br>to CSV in Seconds</h1>
+  <p>No automation. No bots. No account risk. Just click export on the results you can already see.</p>
+  <a href="https://chrome.google.com/webstore" class="btn-cta">Add to Chrome — It's Free</a>
+  <p class="hero-sub">Works on LinkedIn People Search &middot; Sales Navigator &middot; Recruiter</p>
+</section>
+
+<!-- How it works -->
+<div class="how">
+  <div class="section">
+    <h2 class="section-title">How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Search on LinkedIn</h3>
+        <p>Run any LinkedIn people search — standard, Sales Navigator, or Recruiter.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Click the extension</h3>
+        <p>Open Lead Exporter from your Chrome toolbar. The icon lights up green when it's ready.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Export to CSV</h3>
+        <p>Click Export. Name, title, company, location, and profile URL — downloaded instantly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="section">
+  <h2 class="section-title">Everything you need</h2>
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">&#128202;</div>
+      <h3>Clean CSV output</h3>
+      <p>Name, headline, company, location, profile URL, campaign tag, and export timestamp — ready to import anywhere.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#129515;</div>
+      <h3>Duplicate detection</h3>
+      <p>Automatically skips profiles you've already exported across sessions. Never get duplicates in your CRM.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128218;</div>
+      <h3>Lead Basket</h3>
+      <p>Collect leads across multiple pages, then export everything at once as a single file.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#127968;</div>
+      <h3>CRM presets</h3>
+      <p>Export directly in HubSpot or Pipedrive column format. Import without any reformatting.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128274;</div>
+      <h3>100% private</h3>
+      <p>All data stays on your computer. Nothing is ever sent to any external server. No tracking.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#9989;</div>
+      <h3>Safe to use</h3>
+      <p>Reads only what's visible on screen. User-triggered only — no automation, no scraping.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div class="how">
+  <div class="section">
+    <h2 class="section-title">Simple pricing</h2>
+    <div class="pricing">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="plan-price">$0 <span>/ forever</span></div>
+        <ul class="plan-features">
+          <li>20 exports per day</li>
+          <li>Lead Basket (up to 10 leads)</li>
+          <li>Duplicate detection</li>
+          <li>Campaign tagging</li>
+          <li>Copy to clipboard</li>
+        </ul>
+        <a href="https://chrome.google.com/webstore" class="btn-plan btn-plan--free">Add to Chrome</a>
+      </div>
+      <div class="plan plan--pro">
+        <div class="plan-badge">MOST POPULAR</div>
+        <h3>Pro</h3>
+        <div class="plan-price">$11.99 <span>/ month</span></div>
+        <ul class="plan-features">
+          <li>Unlimited exports</li>
+          <li>Lead Basket (up to 5,000 leads)</li>
+          <li>HubSpot &amp; Pipedrive presets</li>
+          <li>Per-lead checkbox selection</li>
+          <li>Viewport filter</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="https://YOUR_STORE.lemonsqueezy.com/checkout/buy/YOUR_PRODUCT_ID" class="btn-plan btn-plan--pro">Upgrade to Pro</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Privacy strip -->
+<div class="privacy-strip">
+  <strong>Your data never leaves your computer.</strong><br>
+  Lead Exporter reads only what is already visible on your screen and saves it to a local file.
+  No servers. No tracking. No cookies.
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 Lead Exporter &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>
